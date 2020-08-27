@@ -10,6 +10,8 @@ export class ProductComponent {
   @Input() product: Product;
   @Output() addCartProduct: EventEmitter<string> = new EventEmitter();
 
+  public today = new Date();
+
   addCart(): void {
     console.log('Agregar al carrito');
     this.addCartProduct.emit(this.product.id);
