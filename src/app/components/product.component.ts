@@ -3,14 +3,15 @@ import { Product } from '../product.model';
 
 @Component({
     selector: 'app-product',
-    templateUrl: './product.component.html'
+    templateUrl: './product.component.html',
+    styleUrls: ['./product.component.scss']
 })
 export class ProductComponent {
-    @Input() product: Product;
-    @Output() addCartProduct: EventEmitter<string> = new EventEmitter();
+  @Input() product: Product;
+  @Output() addCartProduct: EventEmitter<string> = new EventEmitter();
 
-    addCart(): void {
-        console.log('Agregar al carrito');
-        this.addCartProduct.emit(this.product.id);
-    }
+  addCart(): void {
+    console.log('Agregar al carrito');
+    this.addCartProduct.emit(this.product.id);
+  }
 }
