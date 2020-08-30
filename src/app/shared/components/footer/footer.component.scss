@@ -17,28 +17,17 @@ nav {
     width: 100%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
-.inputForm {
-    height: 100%;
-    align-self: center;
-    & input {
-        margin-left: 10%;
-        border-radius: 300px;
-        border: none;
-        padding: 5px;
-        padding-left: 7px;
-    }
-}
-
-@media screen and (max-width: 630px) {
+@media screen and (max-width: 735px) {
     nav {
         flex-direction: column;
     }
     .mat-toolbar-multiple-rows {
-        min-height: 70px;
+        min-height: 130px;
     }
-    .inputForm input {
-        width: 60%;
+    .mat-toolbar-row {
+        align-items: normal;
     }
 }

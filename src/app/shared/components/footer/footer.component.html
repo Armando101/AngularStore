@@ -9,7 +9,11 @@
                         <a mat-mat-button href="https://www.instagram.com/armandorn101/" target="_blank">Instagram</a>
                     </div>
                     <div class="inputForm">
-                        <label for="">Contacto</label><input [formControl]="emailField" type="text">
+                        <label for="">Contacto</label>
+                        <mat-form-field>
+                            <input matInput place holder="Digite su correo" [formControl]="emailField" type="email">
+                            <button mat-raised-button [disabled]="emailField.valid" (click)="sendMail()">Send</button>
+                        </mat-form-field>
                     </div>
                 </nav>
             </div>
