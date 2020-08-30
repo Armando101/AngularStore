@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HighlightDirective } from './directives/highlight.directive';
+import { CartRepeatPipe } from '../core/pipes/cart-repeat.pipe';
 
 import { MaterialModule } from '../material/material.module';
 
@@ -13,7 +14,8 @@ import { MaterialModule } from '../material/material.module';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    HighlightDirective
+    HighlightDirective,
+    CartRepeatPipe
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { MaterialModule } from '../material/material.module';
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CartRepeatPipe
   ]
 })
 export class SharedModule { }
