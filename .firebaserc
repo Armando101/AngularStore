@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "store-d894e": {
+      "hosting": {
+        "store": [
+          "store-d894e"
+        ]
+      }
+    }
+  }
+}
