@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 
-import { ProductsService } from 'src/app/core/services/products/products.service';
+import { ProductsService } from '@core/services/products/products.service';
 import { MyValidators } from 'src/app/utils/validators';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
