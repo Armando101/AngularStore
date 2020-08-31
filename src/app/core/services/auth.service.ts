@@ -13,4 +13,12 @@ export class AuthService {
   createUser(email: string, password: string): Promise<firebase.auth.UserCredential> {
     return this.afa.createUserWithEmailAndPassword(email, password);
   }
+
+  login(email: string, password: string): Promise<firebase.auth.UserCredential>{
+    return this.afa.signInWithEmailAndPassword(email, password);
+  }
+
+  logout(): Promise<void> {
+    return this.afa.signOut();
+  }
 }

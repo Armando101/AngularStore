@@ -27,6 +27,10 @@ const routes: Routes = [
         loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
       },
       {
+        path: 'auth',
+        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+      },
+      {
         path: 'order',
         loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
       }
