@@ -54,9 +54,8 @@ export class FormProductComponent implements OnInit {
   }
 
   uploadFile(event): void {
-    const imageId = String(Math.floor(Math.random() * 500000));
     const file = event.target.files[0];
-    const dir = `images/product_${imageId}`;
+    const dir = `images/${file.name}`;
     const fileRef = this.storage.ref(dir);
     const task = this.storage.upload(dir, file);
 
