@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Product } from '../../models/product.model';
+import { Product } from '@core/models/product.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
+
+interface User {
+  email: string;
+  gender: string;
+  phone: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +39,12 @@ export class ProductsService {
 
   deleteProduct(id: string): Observable<Product> {
     return this.http.delete<Product>(`${environment.url_api}/products/${id}`);
+  }
+
+  getRandomUsers(): Observable<User[]> {
+    return this.http.get('https://randomuser.me/api?results=2')
+      .pipe(
+        map((response: any) => response.results as User[])
+      );
   }
 }
