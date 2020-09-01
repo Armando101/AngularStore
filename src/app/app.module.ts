@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
@@ -12,6 +12,7 @@ import { CartComponent } from './cart/cart.component';
 
 import { LayoutComponent } from './layout/layout.component';
 import { environment } from 'src/environments/environment';
+import { AuthInterceptor } from './auth.interceptor';
 
 import { SharedModule } from './shared/shared.module';
 
@@ -38,7 +39,11 @@ Sentry.init({
     SharedModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
