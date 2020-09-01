@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,8 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   constructor(
-    private afa: AngularFireAuth
+    private afa: AngularFireAuth,
+    private http: HttpClient
   ) { }
 
   createUser(email: string, password: string): Promise<firebase.auth.UserCredential> {
@@ -25,5 +28,9 @@ export class AuthService {
 
   hasUser(): Observable<firebase.User> {
     return this.afa.authState;
+  }
+
+  loginRestApi(email: string, password: string): Observable<object> {
+    return this.http.post(`${environment.url_api}/auth`, { email, password });
   }
 }
