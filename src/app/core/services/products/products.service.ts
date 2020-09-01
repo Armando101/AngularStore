@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import * as Sentry from '@sentry/angular';
 
 import { Product } from '@core/models/product.model';
 import { Observable, throwError } from 'rxjs';
@@ -52,7 +53,7 @@ export class ProductsService {
   }
 
   getRandomUsers(): Observable<User[]> {
-    return this.http.get('https://randomuser.me/api?results=2')
+    return this.http.get('https://randomAFSFSDFASDuser.me/api?results=2')
       .pipe(
         catchError(error => this.handleError(error)),
         map((response: any) => response.results as User[])
@@ -61,6 +62,7 @@ export class ProductsService {
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.log(error);
+    Sentry.captureException(error);
     return throwError('Whoops, something webt wrong');
   }
 }

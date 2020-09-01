@@ -11,11 +11,15 @@ import { AppComponent } from './app.component';
 import { CartComponent } from './cart/cart.component';
 
 import { LayoutComponent } from './layout/layout.component';
-
-import { SharedModule } from '@shared/shared.module';
-import { CoreModule } from './core/core.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from 'src/environments/environment';
+
+import { SharedModule } from './shared/shared.module';
+
+import * as Sentry from '@sentry/angular';
+
+Sentry.init({
+  dsn: 'https://254ba0a9de444a4f99fefddb138cb2c7@o441805.ingest.sentry.io/5412568'
+});
 
 @NgModule({
   declarations: [
@@ -27,13 +31,11 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    SharedModule,
-    CoreModule,
-    BrowserAnimationsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
