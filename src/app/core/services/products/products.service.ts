@@ -5,7 +5,7 @@ import * as Sentry from '@sentry/angular';
 import { Product } from '@core/models/product.model';
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, retry } from 'rxjs/operators';
 
 interface User {
   email: string;
@@ -55,9 +55,15 @@ export class ProductsService {
   getRandomUsers(): Observable<User[]> {
     return this.http.get('https://randomAFSFSDFASDuser.me/api?results=2')
       .pipe(
+        // Hacemos un retry de 3 veces, esto es que hace tres intentos antes de mandar un error
+        retry(3),
         catchError(error => this.handleError(error)),
         map((response: any) => response.results as User[])
       );
+  }
+
+  getFile(): Observable<string> {
+    return this.http.get('assets/files/test.txt', { responseType: 'text' });
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
