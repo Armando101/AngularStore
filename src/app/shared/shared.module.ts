@@ -10,13 +10,15 @@ import { CartRepeatPipe } from '../core/pipes/cart-repeat.pipe';
 
 import { MaterialModule } from '@material/material.module';
 import { QuicklinkModule } from 'ngx-quicklink';
+import { FibonacciPipe } from './pipes/fibonacci.pipe';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
     HighlightDirective,
-    CartRepeatPipe
+    CartRepeatPipe,
+    FibonacciPipe
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { QuicklinkModule } from 'ngx-quicklink';
   exports: [
     HeaderComponent,
     FooterComponent,
-    CartRepeatPipe
+    CartRepeatPipe,
+    FibonacciPipe
   ]
 })
 export class SharedModule { }
