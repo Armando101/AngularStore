@@ -1,3 +1,3 @@
-<p>Value: {{ value }}</p>
+<p>Value: {{ value$ | async }}</p>
 <app-list (add)="addItem(salesList, $event)" title="Sales List" [data]="salesList"></app-list>
 <app-list (add)="addItem(bList, $event)" title="Buissnes List" [data]="bList"></app-list>
