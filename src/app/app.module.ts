@@ -18,6 +18,7 @@ import { SharedModule } from './shared/shared.module';
 
 import * as Sentry from '@sentry/angular';
 import { QuicklinkModule } from 'ngx-quicklink';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 Sentry.init({
   dsn: 'https://254ba0a9de444a4f99fefddb138cb2c7@o441805.ingest.sentry.io/5412568'
@@ -39,7 +40,8 @@ Sentry.init({
     AngularFireStorageModule,
     SharedModule,
     BrowserAnimationsModule,
-    QuicklinkModule
+    QuicklinkModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
