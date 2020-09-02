@@ -17,6 +17,7 @@ import { AuthInterceptor } from './auth.interceptor';
 import { SharedModule } from './shared/shared.module';
 
 import * as Sentry from '@sentry/angular';
+import { QuicklinkModule } from 'ngx-quicklink';
 
 Sentry.init({
   dsn: 'https://254ba0a9de444a4f99fefddb138cb2c7@o441805.ingest.sentry.io/5412568'
@@ -37,7 +38,8 @@ Sentry.init({
     AngularFireAuthModule,
     AngularFireStorageModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    QuicklinkModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -9,6 +9,7 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { CartRepeatPipe } from '../core/pipes/cart-repeat.pipe';
 
 import { MaterialModule } from '@material/material.module';
+import { QuicklinkModule } from 'ngx-quicklink';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MaterialModule } from '@material/material.module';
     CommonModule,
     RouterModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    QuicklinkModule
   ],
   exports: [
     HeaderComponent,
