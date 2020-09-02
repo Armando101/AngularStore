@@ -11,9 +11,9 @@ export class PreloadService implements PreloadingStrategy {
 
   preload(route: Route, load: () => Observable<any>): Observable<any> {
     if (route.data && route.data.preload) {
-      return load();
+      return load(); // si tiene la metadata de precarga lo precargamos, de lo contrario no
     } else {
-      return of();
+      return of();  // Regresamos un observable vacio
     }
   }
 }
