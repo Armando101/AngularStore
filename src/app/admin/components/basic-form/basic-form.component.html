@@ -1,9 +1,11 @@
-<h3>{{ nameField.value }}</h3>
-<p>
-    <input type="text" [formControl]="nameField"/>
-</p>
+<h3>Name: {{ nameField.value }} {{ nameField.valid }}</h3>
+
+<p><input type="text" [formControl]="nameField"/></p>
+<p><strong style="color: darkred;" *ngIf="nameField.touched && nameField.hasError('required')">Este campo es requerido</strong></p>
+<p><strong style="color: darkred;" *ngIf="nameField.dirty && nameField.hasError('maxlength')">Debe tener maximo 10 caracteres</strong></p>
+
+<button [disabled]="nameField.invalid" mat-raised-button color="primary" (click)="getNameValue()">Click me</button>
 <br>
-<button mat-raised-button color="primary" (click)="getNameValue()">Click me</button>
 
 <!-- Vemos todo lo que tiene un formControl y todo lo que podemos utilizar -->
 <!--

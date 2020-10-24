@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-basic-form',
@@ -8,7 +8,11 @@ import { FormControl } from '@angular/forms';
 })
 export class BasicFormComponent implements OnInit {
 
-  public nameField = new FormControl('');
+  // La estructura de un form control es:
+  // Valor por defecto, validaciones sincronas, validaciones asincronas
+  // public nameField = new FormControl('Valor por defecto', [Validaciones sincronas], [Validaciones asincronas]);
+
+  public nameField = new FormControl('', [Validators.required, Validators.maxLength(10)]);
   public emailField = new FormControl('');
   public phoneField = new FormControl('');
   public colorField = new FormControl('');
