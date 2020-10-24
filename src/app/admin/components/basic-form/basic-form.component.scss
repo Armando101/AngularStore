@@ -17,3 +17,9 @@ input {
         color: darkred;
     }
 }
+
+form {
+    & mat-form-field {
+        width: 100%;
+    }
+}
