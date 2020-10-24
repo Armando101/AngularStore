@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup, AbstractControl } from '@angular/forms';
+import { FormControl, Validators, FormGroup, AbstractControl, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-basic-form',
@@ -8,25 +8,7 @@ import { FormControl, Validators, FormGroup, AbstractControl } from '@angular/fo
 })
 export class BasicFormComponent implements OnInit {
 
-  public form = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.maxLength(10)]),
-    email: new FormControl(''),
-    phone: new FormControl(''),
-    color: new FormControl(''),
-    date: new FormControl(''),
-    number: new FormControl(''),
-    radio: new FormControl(''),
-    url: new FormControl(''),
-    search: new FormControl(''),
-    age: new FormControl(''),
-
-    category: new FormControl('category-2'),
-    tag: new FormControl(''),
-
-    agreed: new FormControl(false),
-    gender: new FormControl(),
-    zone: new FormControl()
-  });
+  public form: FormGroup;
 
   // La estructura de un form control es:
   // Valor por defecto, validaciones sincronas, validaciones asincronas
@@ -49,7 +31,11 @@ export class BasicFormComponent implements OnInit {
   // public genderField = new FormControl();
   // public zoneField = new FormControl();
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder
+  ) {
+    this.buildForm();
+  }
 
   ngOnInit(): void {
     this.nameField.valueChanges.subscribe(value => {
@@ -126,9 +112,31 @@ export class BasicFormComponent implements OnInit {
 
   }
 
+  private buildForm(): void {
+    this.form = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(10)]],
+      email: [''],
+      phone: ['', Validators.required],
+      color: [''],
+      date: [''],
+      number: [''],
+      radio: [''],
+      url: [''],
+      search: [''],
+      age: [''],
+
+      category: ['category-2'],
+      tag: [''],
+
+      agreed: [false],
+      gender: [],
+      zone: []
+    });
+  }
+
   save(event): void | boolean {
     if (this.form.invalid){
-      this.form.controls.name.markAsTouched();
+      this.form.markAllAsTouched();
       return false;
     }
     console.log(this.form.value);
