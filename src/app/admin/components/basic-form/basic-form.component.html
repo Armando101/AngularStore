@@ -11,6 +11,7 @@
     <div class="messages" [class.active]="(nameField.touched || nameField.dirty) && nameField.invalid">
         <p><strong *ngIf="nameField.touched && nameField.hasError('required')">Este campo es requerido</strong></p>
         <p><strong *ngIf="nameField.dirty && nameField.hasError('maxlength')">Debe tener maximo 10 caracteres</strong></p>
+        <p><strong *ngIf="nameField.dirty && nameField.hasError('pattern')">Debe ser un nombre valido</strong></p>
     </div>
 
     <button [disabled]="nameField.invalid" mat-raised-button color="primary" (click)="getNameValue()">Click me</button>
@@ -27,6 +28,11 @@
         Email: {{ emailField.value }}
         <input type="email" formControlName="email">
     </p>
+
+    <div class="messages" [class.active]="(emailField.touched || emailField.dirty) && emailField.invalid">
+        <p><strong *ngIf="emailField.hasError('required')">Este campo es requerido</strong></p>
+        <p><strong *ngIf="emailField.hasError('email')">Esto no es un email valido</strong></p>
+    </div>
 
     <p>
         Phone: {{ phoneField.value }}
@@ -51,6 +57,12 @@
         Age: {{ ageField.value }}
         <input type="range" formControlName ="age">
     </p>
+
+    <div class="messages" [class.active]="(ageField.touched || ageField.dirty) && ageField.invalid">
+        <p><strong *ngIf="ageField.hasError('required')">Este campo es requerido</strong></p>
+        <p><strong *ngIf="ageField.hasError('min')">Este servicio no es apto para menores de edad</strong></p>
+        <p><strong *ngIf="ageField.hasError('max')">Ingrese una edad valida</strong></p>
+    </div>
 
     <p>
         Radio: {{ radioField.value }}
@@ -91,6 +103,10 @@
         Agree: {{ agreedField.value }}
         <input type="checkbox" formControlName ="agreed"/>
     </p>
+
+    <div class="messages" [class.active]="agreedField.touched && agreedField.invalid">
+        <p><strong>Tiene que aprobar para continuar</strong></p>
+    </div>
 
     <p>
         Gender: {{ genderField.value }}

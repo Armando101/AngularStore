@@ -114,8 +114,8 @@ export class BasicFormComponent implements OnInit {
 
   private buildForm(): void {
     this.form = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.maxLength(10)]],
-      email: [''],
+      name: ['', [Validators.required, Validators.maxLength(10), Validators.pattern('^[a-zA-Z]+$')]],
+      email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
       color: [''],
       date: [''],
@@ -123,12 +123,12 @@ export class BasicFormComponent implements OnInit {
       radio: [''],
       url: [''],
       search: [''],
-      age: [''],
+      age: ['', [Validators.required, Validators.min(18), Validators.max(100)]],
 
       category: ['category-2'],
       tag: [''],
 
-      agreed: [false],
+      agreed: [false, [Validators.requiredTrue]],
       gender: [],
       zone: []
     });
