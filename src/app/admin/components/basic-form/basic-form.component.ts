@@ -18,6 +18,9 @@ export class BasicFormComponent implements OnInit {
   public urlField = new FormControl('');
   public searchField = new FormControl('');
 
+  public categoryField = new FormControl('category-2');
+  public tagField = new FormControl('');
+
   constructor() { }
 
   ngOnInit(): void {
