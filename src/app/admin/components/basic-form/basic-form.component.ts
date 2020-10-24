@@ -8,7 +8,15 @@ import { FormControl } from '@angular/forms';
 })
 export class BasicFormComponent implements OnInit {
 
-  public nameField = new FormControl('Soy un control');
+  public nameField = new FormControl('');
+  public emailField = new FormControl('');
+  public phoneField = new FormControl('');
+  public colorField = new FormControl('');
+  public dateField = new FormControl('');
+  public numberField = new FormControl('');
+  public radioField = new FormControl('');
+  public urlField = new FormControl('');
+  public searchField = new FormControl('');
 
   constructor() { }
 
