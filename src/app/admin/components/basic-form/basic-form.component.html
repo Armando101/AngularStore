@@ -1,28 +1,45 @@
 <form [formGroup]="form" (ngSubmit)="save($event)">
-    <h3>Name: {{ nameField.value }} {{ nameField.valid }}</h3>
 
-    <p><input
-        [class.is-valid]="isNameFieldValid"
-        [class.is-invalid]="isNameFieldInvalid"
-        type="text"
-        formControlName="name"
+    <div formGroupName="fullName">
+
+        <h3>Name: {{ nameField.value }} {{ nameField.valid }}</h3>
+
+        <p><input
+            [class.is-valid]="isNameFieldValid"
+            [class.is-invalid]="isNameFieldInvalid"
+            type="text"
+            formControlName="name"
         /></p>
 
-    <div class="messages" [class.active]="(nameField.touched || nameField.dirty) && nameField.invalid">
-        <p><strong *ngIf="nameField.touched && nameField.hasError('required')">Este campo es requerido</strong></p>
-        <p><strong *ngIf="nameField.dirty && nameField.hasError('maxlength')">Debe tener maximo 10 caracteres</strong></p>
-        <p><strong *ngIf="nameField.dirty && nameField.hasError('pattern')">Debe ser un nombre valido</strong></p>
-    </div>
+        <div class="messages" [class.active]="(nameField.touched || nameField.dirty) && nameField.invalid">
+            <p><strong *ngIf="nameField.touched && nameField.hasError('required')">Este campo es requerido</strong></p>
+            <p><strong *ngIf="nameField.dirty && nameField.hasError('maxlength')">Debe tener maximo 10 caracteres</strong></p>
+            <p><strong *ngIf="nameField.dirty && nameField.hasError('pattern')">Debe ser un nombre valido</strong></p>
+        </div>
 
-    <button [disabled]="nameField.invalid" mat-raised-button color="primary" (click)="getNameValue()">Click me</button>
+        <h3>Lastame: {{ lastnameField.value }} {{ lastnameField.valid }}</h3>
+
+        <p><input
+            type="text"
+            formControlName="lastname"
+        /></p>
+
+        <div class="messages" [class.active]="(lastnameField.touched || lastnameField.dirty) && lastnameField.invalid">
+            <p><strong *ngIf="lastnameField.touched && lastnameField.hasError('required')">Este campo es requerido</strong></p>
+            <p><strong *ngIf="lastnameField.dirty && lastnameField.hasError('maxlength')">Debe tener maximo 10 caracteres</strong></p>
+            <p><strong *ngIf="lastnameField.dirty && lastnameField.hasError('pattern')">Debe ser un nombre valido</strong></p>
+        </div>
+
+        <button [disabled]="nameField.invalid" mat-raised-button color="primary" (click)="getNameValue()">Click me</button>
+
+    </div>
     <br>
 
     <!-- Vemos todo lo que tiene un formControl y todo lo que podemos utilizar -->
-    <!--
-    <code>
+
+    <!-- <code>
         <pre>{{ nameField | json }}</pre>
-    </code>
-    -->
+    </code> -->
 
     <p>
         Email: {{ emailField.value }}

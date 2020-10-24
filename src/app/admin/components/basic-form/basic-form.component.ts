@@ -48,7 +48,11 @@ export class BasicFormComponent implements OnInit {
   }
 
   get nameField(): AbstractControl {
-    return this.form.get('name');
+    return this.form.get('fullName').get('name');
+  }
+
+  get lastnameField(): AbstractControl {
+    return this.form.get('fullName.lastname');
   }
 
   get emailField(): AbstractControl {
@@ -114,7 +118,10 @@ export class BasicFormComponent implements OnInit {
 
   private buildForm(): void {
     this.form = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.maxLength(10), Validators.pattern('^[a-zA-Z]+$')]],
+      fullName: this.formBuilder.group({
+        name: ['', [Validators.required, Validators.maxLength(10), Validators.pattern('^[a-zA-Z]+$')]],
+        lastname: ['', [Validators.required, Validators.maxLength(10), Validators.pattern('^[a-zA-Z]+$')]],
+      }),
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
       color: [''],
@@ -134,10 +141,10 @@ export class BasicFormComponent implements OnInit {
     });
   }
 
-  save(event): void | boolean {
+  save(event): void {
     if (this.form.invalid){
       this.form.markAllAsTouched();
-      return false;
+      return;
     }
     console.log(this.form.value);
   }
