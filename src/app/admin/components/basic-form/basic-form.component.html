@@ -1,0 +1,13 @@
+<h3>{{ nameField.value }}</h3>
+<p>
+    <input type="text" [formControl]="nameField"/>
+</p>
+<br>
+<button mat-raised-button color="primary" (click)="getNameValue()">Click me</button>
+
+<!-- Vemos todo lo que tiene un formControl y todo lo que podemos utilizar -->
+<!--
+<code>
+    <pre>{{ nameField | json }}</pre>
+</code>
+-->

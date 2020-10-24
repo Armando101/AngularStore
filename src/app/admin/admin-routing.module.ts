@@ -6,6 +6,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { FormProductComponent } from './components/form-product/form-product.component';
+import { BasicFormComponent } from './components/basic-form/basic-form.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
         path: 'products/create',
         component: FormProductComponent
       },
+      {
+        path: 'basic',
+        component: BasicFormComponent
+      }
     ]
   }
 ];

@@ -25,9 +25,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.updatePWA();
-    this.requestPermission();
-    this.listenNotifications();
+    // this.updatePWA();
+    // this.requestPermission();
+    // this.listenNotifications();
   }
 
   updatePWA(): void {
