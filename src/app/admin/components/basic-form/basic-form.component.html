@@ -1,8 +1,14 @@
 <h3>Name: {{ nameField.value }} {{ nameField.valid }}</h3>
 
-<p><input type="text" [formControl]="nameField"/></p>
-<p><strong style="color: darkred;" *ngIf="nameField.touched && nameField.hasError('required')">Este campo es requerido</strong></p>
-<p><strong style="color: darkred;" *ngIf="nameField.dirty && nameField.hasError('maxlength')">Debe tener maximo 10 caracteres</strong></p>
+<p><input
+    [class.is-valid]="isNameFieldValid"
+    [class.is-invalid]="isNameFieldInvalid"
+    type="text" [formControl]="nameField"/></p>
+
+<div class="messages" [class.active]="(nameField.touched || nameField.dirty) && nameField.invalid">
+    <p><strong *ngIf="nameField.touched && nameField.hasError('required')">Este campo es requerido</strong></p>
+    <p><strong *ngIf="nameField.dirty && nameField.hasError('maxlength')">Debe tener maximo 10 caracteres</strong></p>
+</div>
 
 <button [disabled]="nameField.invalid" mat-raised-button color="primary" (click)="getNameValue()">Click me</button>
 <br>
