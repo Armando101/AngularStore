@@ -15,7 +15,14 @@ import { FormProductComponent } from './components/form-product/form-product.com
 import { BasicFormComponent } from './components/basic-form/basic-form.component';
 
 @NgModule({
-  declarations: [ProductFormComponent, NavComponent, DashboardComponent, ProductsListComponent, FormProductComponent, BasicFormComponent],
+  declarations: [
+    ProductFormComponent,
+    NavComponent,
+    DashboardComponent,
+    ProductsListComponent,
+    FormProductComponent,
+    BasicFormComponent,
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,

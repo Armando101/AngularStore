@@ -7,6 +7,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { FormProductComponent } from './components/form-product/form-product.component';
 import { BasicFormComponent } from './components/basic-form/basic-form.component';
+import { CategoriesModule } from './categories/categories.module';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: 'basic',
         component: BasicFormComponent
+      },
+      {
+        path: 'categories',
+        loadChildren: () => import ('./categories/categories.module').then(m => m.CategoriesModule)
       }
     ]
   }
