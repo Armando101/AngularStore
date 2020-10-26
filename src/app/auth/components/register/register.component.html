@@ -37,6 +37,22 @@
             </div>
           </mat-form-field>
         </div>
+        <div class="row">
+          <div class="col-xs">
+            <mat-radio-group formControlName="type" aria-label="Select an option">
+              <mat-radio-button value="company">Company</mat-radio-button>
+              <mat-radio-button value="customer">Customer</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div *ngIf="showCompany" class="row">
+          <div class="col-xs">
+            <mat-form-field>
+              <mat-label>Company Name</mat-label>
+              <input placeholder="company" formControlName="companyName" matInput type="text"/>
+            </mat-form-field>
+          </div>
+        </div>
       </div>
     </mat-card-content>
     <mat-card-actions>
