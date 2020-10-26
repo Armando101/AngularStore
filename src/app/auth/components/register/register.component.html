@@ -32,7 +32,7 @@
             <input placeholder="password" formControlName="confirmPassword" matInput type="password">
             <div *ngIf="form.get('confirmPassword').touched && form.errors">
               <mat-error *ngIf="form.hasError('match_password')">
-                No hace match
+                Los passwords no coinciden
               </mat-error>
             </div>
           </mat-form-field>
