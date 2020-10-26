@@ -18,6 +18,7 @@
     ],
     "paths": {
       "@core/*": ["src/app/core/*"],
+      "@utils/*": ["src/app/utils/*"],
       "@material/*": ["src/app/material/*"],
       "@shared/*": ["src/app/shared/*"],
       "@admin/*": ["src/app/admin/*"],
