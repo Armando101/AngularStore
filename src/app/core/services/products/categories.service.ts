@@ -1,9 +1,28 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { Category } from '@core/models/category.model';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriesService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  getAllCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${environment.url_api_forms}/categories`);
+  }
+
+  createCategory(data: Partial<Category>): Observable<Category>  {
+    return this.http.post<Category>(`${environment.url_api_forms}/categories`, data);
+  }
+
+  updateCategory(id: string, data: Partial<Category>): Observable<Category>  {
+    return this.http.put<Category>(`${environment.url_api_forms}/categories/${id}`, data);
+  }
 }
