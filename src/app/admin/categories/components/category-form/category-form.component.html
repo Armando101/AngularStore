@@ -18,17 +18,20 @@
             </div>
             </div>
             <div class="row">
-            <div class="col-xs">
-                <mat-form-field>
-                <mat-label>Image</mat-label>
-                <input placeholder="Image" formControlName="image" matInput type="text">
+              <div class="col-xs">
+                <button (click)="uploadImage($event)" mat-fab color="primary"><mat-icon>insert_photo</mat-icon></button>
+                <input hidden (change)="uploadFile($event)" placeholder="Image" #fileInput type="file" id="file">
                 <div class="messages" *ngIf="imageField.touched && imageField.invalid">
                     <mat-error *ngIf="imageField.hasError('required')">
                     Este campo es requerido
                     </mat-error>
                 </div>
-                </mat-form-field>
+              </div>
             </div>
+            <div class="row">
+              <div class="col-xs">
+                <img *ngIf="imageField.value" [src]="imageField.value">
+              </div>
             </div>
         </mat-card-content>
         <mat-card-actions>
