@@ -7,13 +7,21 @@
             <div class="row">
             <div class="col-xs">
                 <mat-form-field>
-                <mat-label>Nombre</mat-label>
-                <input placeholder="Nombre" formControlName="name" matInput type="text">
-                <div class="messages" *ngIf="nameField.touched && nameField.invalid">
+                  <mat-label>Nombre</mat-label>
+                  <input placeholder="Nombre" formControlName="name" matInput type="text">
+                  <div class="messages" *ngIf="nameField.touched && nameField.invalid">
                     <mat-error *ngIf="nameField.hasError('required')">
-                    Este campo es requerido
+                      Este campo es requerido
                     </mat-error>
-                </div>
+                    <mat-error *ngIf="nameField.hasError('minlength')">
+                      Mínimo debe contener 4 caracteres
+                    </mat-error>
+                  </div>
+                  <div class="messages" *ngIf="(nameField.touched && nameField.invalid) || nameField.dirty">
+                    <mat-error *ngIf="nameField.hasError('not_available')">
+                      Este nombre no está disponible
+                  </mat-error>
+                  </div>
                 </mat-form-field>
             </div>
             </div>

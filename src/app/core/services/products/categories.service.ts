@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Category } from '@core/models/category.model';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+
+import { Category } from '@core/models/category.model';
+import Availability from '@core/models/Availability.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +26,8 @@ export class CategoriesService {
 
   updateCategory(id: string, data: Partial<Category>): Observable<Category>  {
     return this.http.put<Category>(`${environment.url_api_forms}/categories/${id}`, data);
+  }
+  checkCategory(name: string): Observable<Availability> {
+    return this.http.post<Availability>(`${environment.url_api_forms}/categories/availability`, {name});
   }
 }

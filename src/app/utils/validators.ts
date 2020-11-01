@@ -1,4 +1,7 @@
 import { AbstractControl } from '@angular/forms';
+import { CategoriesService } from '@core/services/products/categories.service';
+import Availability from '@core/models/Availability.model';
+import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 export class MyValidators {
     static isPriceValid(control: AbstractControl): object {
@@ -25,6 +28,24 @@ export class MyValidators {
             return null;
         }
         return {match_password: true};
+    }
+
+    static validateCategory(service: CategoriesService): (control: AbstractControl) => object {
+        return (control: AbstractControl) => {
+            const value = control.value;
+            return service.checkCategory(value)
+                .pipe(
+                    debounceTime(1000),
+                    distinctUntilChanged(),
+                    map((response: Availability) => {
+                    const isAvailable = response.isAvailable;
+                    if (!isAvailable) {
+                        return {not_available: true};
+                    }
+                    return null;
+                })
+            );
+        };
     }
 
 }
