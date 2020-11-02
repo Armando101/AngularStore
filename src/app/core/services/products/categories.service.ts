@@ -31,6 +31,7 @@ export class CategoriesService {
   updateCategory(id: string, data: Partial<Category>): Observable<Category>  {
     return this.http.put<Category>(`${environment.url_api_forms}/categories/${id}`, data);
   }
+
   checkCategory(name: string): Observable<Availability> {
     return this.http.post<Availability>(`${environment.url_api_forms}/categories/availability`, {name});
   }
