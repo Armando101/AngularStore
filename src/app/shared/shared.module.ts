@@ -11,6 +11,7 @@ import { CartRepeatPipe } from '../core/pipes/cart-repeat.pipe';
 import { MaterialModule } from '@material/material.module';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { FibonacciPipe } from './pipes/fibonacci.pipe';
+import { StepperComponent } from './components/stepper/stepper.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FibonacciPipe } from './pipes/fibonacci.pipe';
     FooterComponent,
     HighlightDirective,
     CartRepeatPipe,
-    FibonacciPipe
+    FibonacciPipe,
+    StepperComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { FibonacciPipe } from './pipes/fibonacci.pipe';
     HeaderComponent,
     FooterComponent,
     CartRepeatPipe,
-    FibonacciPipe
+    FibonacciPipe,
+    StepperComponent
   ]
 })
 export class SharedModule { }

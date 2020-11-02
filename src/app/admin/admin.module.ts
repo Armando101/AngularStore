@@ -4,6 +4,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '@material/material.module';
+import { SharedModule } from '@shared/shared.module';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { ProductFormComponent } from './components/product-form/product-form.component';
@@ -30,7 +31,8 @@ import { ProductEditComponent } from './components/product-edit/product-edit.com
     AdminRoutingModule,
     MaterialModule,
     LayoutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class AdminModule { }

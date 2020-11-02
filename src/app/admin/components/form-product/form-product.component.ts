@@ -41,12 +41,18 @@ export class FormProductComponent implements OnInit {
       price: ['', [Validators.required, MyValidators.isPriceValid]],
       image: [''],
       category_id: ['', Validators.required],
-      description: ['', [Validators.required, Validators.minLength(10)]]
+      description: ['', [Validators.required, Validators.minLength(10)]],
+      stock: [4, Validators.required]
+    });
+    this.form.get('stock').valueChanges
+    .subscribe(value => {
+      console.log(value);
     });
   }
 
   saveProduct(event: Event): void {
     event.preventDefault();
+    console.log(this.form.value);
     if (this.form.invalid) {
       this.form.markAllAsTouched();
     }
@@ -75,6 +81,10 @@ export class FormProductComponent implements OnInit {
 
   get category_idField(): AbstractControl {
     return this.form.get('category_id');
+  }
+
+  get stockField(): AbstractControl {
+    return this.form.get('stock');
   }
 
   uploadFile(event): void {
