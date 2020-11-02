@@ -13,6 +13,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { FormProductComponent } from './components/form-product/form-product.component';
 import { BasicFormComponent } from './components/basic-form/basic-form.component';
+import { ProductEditComponent } from './components/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BasicFormComponent } from './components/basic-form/basic-form.component
     ProductsListComponent,
     FormProductComponent,
     BasicFormComponent,
+    ProductEditComponent,
   ],
   imports: [
     CommonModule,
