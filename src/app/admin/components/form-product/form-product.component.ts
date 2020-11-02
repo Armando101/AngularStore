@@ -4,9 +4,11 @@ import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 
 import { ProductsService } from '@core/services/products/products.service';
+import { CategoriesService } from '@core/services/products/categories.service';
 import { MyValidators } from 'src/app/utils/validators';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Category } from '@core/models/category.model';
 
 @Component({
   selector: 'app-form-product',
@@ -17,31 +19,37 @@ export class FormProductComponent implements OnInit {
 
   public form: FormGroup;
   public image$: Observable<any>;
+  public categories: Category[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private productsService: ProductsService,
     private router: Router,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private categoryService: CategoriesService
   ) {
     this.buildForm();
   }
 
   ngOnInit(): void {
+    this.getCategories();
   }
 
   private buildForm(): void {
     this.form = this.formBuilder.group({
-      id: ['', Validators.required],
-      title: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(4)]],
       price: ['', [Validators.required, MyValidators.isPriceValid]],
       image: [''],
-      description: ['', Validators.required]
+      category_id: ['', Validators.required],
+      description: ['', [Validators.required, Validators.minLength(10)]]
     });
   }
 
   saveProduct(event: Event): void {
     event.preventDefault();
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+    }
     if (this.form.valid) {
       const product = this.form.value;
       this.productsService.createProduct(product)
@@ -51,6 +59,22 @@ export class FormProductComponent implements OnInit {
 
   get priceField(): AbstractControl {
     return this.form.get('price');
+  }
+
+  get nameField(): AbstractControl {
+    return this.form.get('name');
+  }
+
+  get descriptionField(): AbstractControl {
+    return this.form.get('description');
+  }
+
+  get imageField(): AbstractControl {
+    return this.form.get('image');
+  }
+
+  get category_idField(): AbstractControl {
+    return this.form.get('category_id');
   }
 
   uploadFile(event): void {
@@ -69,5 +93,12 @@ export class FormProductComponent implements OnInit {
       })
     )
     .subscribe();
+  }
+
+  private getCategories(): void {
+    this.categoryService.getAllCategories()
+      .subscribe((categories) => {
+        this.categories = categories;
+      });
   }
 }
