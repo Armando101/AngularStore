@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FormControl, Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 
@@ -17,17 +17,25 @@ export class CategoryFormComponent implements OnInit {
 
   public form: FormGroup;
   public image$: Observable<any>;
+  public categoryId: string;
 
   constructor(
     private categoriesService: CategoriesService,
     private formBuilder: FormBuilder,
     private storage: AngularFireStorage,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.buildForm();
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.categoryId = params.id;
+      if (this.categoryId) {
+        this.getCategory();
+      }
+    });
   }
 
   private buildForm(): void {
@@ -74,8 +82,16 @@ export class CategoryFormComponent implements OnInit {
   private createCategory(): void {
     const data = this.form.value;
     this.categoriesService.createCategory(data)
-    .subscribe(rta => {
+    .subscribe(() => {
       this.router.navigate(['./admin/categories']);
+    });
+  }
+
+  private getCategory(): void {
+    this.categoriesService.getCategory(this.categoryId)
+    .subscribe(data => {
+      console.log(data);
+      this.form.patchValue(data);
     });
   }
 

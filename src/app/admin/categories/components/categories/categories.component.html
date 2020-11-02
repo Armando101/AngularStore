@@ -14,7 +14,7 @@
             </p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-raised-button color="primary">Edit</button>
+            <button mat-raised-button [routerLink]="['edit', data._id]" color="primary">Edit</button>
             <button mat-stroked-button color="warn">Delete</button>
           </mat-card-actions>
     </mat-card>

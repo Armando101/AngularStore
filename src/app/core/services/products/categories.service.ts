@@ -20,6 +20,10 @@ export class CategoriesService {
     return this.http.get<Category[]>(`${environment.url_api_forms}/categories`);
   }
 
+  getCategory(id: string): Observable<Category> {
+    return this.http.get<Category>(`${environment.url_api_forms}/categories/${id}`);
+  }
+
   createCategory(data: Partial<Category>): Observable<Category>  {
     return this.http.post<Category>(`${environment.url_api_forms}/categories`, data);
   }
